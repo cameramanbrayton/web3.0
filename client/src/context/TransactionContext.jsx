@@ -20,13 +20,14 @@ const getEthereumContract = () => {
 };
 
 export const TransactionProvider = ({ children }) => {
-  const [currentAccount, setCurrentAccount] = useState("");
   const [formData, setFormData] = useState({
     addressTo: "",
     amount: "",
     keyword: "",
     message: "",
   });
+
+  const [currentAccount, setCurrentAccount] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -108,6 +109,8 @@ export const TransactionProvider = ({ children }) => {
       console.log("Success - ${transactionHash.hash}");
 
       const transactionCount = await transactionContract.getTransactionCount();
+
+      setTransactionCount(transactionCount.toNumber());
     } catch (error) {
       console.log(error);
 
